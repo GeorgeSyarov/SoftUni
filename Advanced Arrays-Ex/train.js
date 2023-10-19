@@ -2,7 +2,7 @@ function train(input) {
   let wagoons = input
     .shift()
     .split(" ")
-    .map((x) => Number(x));
+    .map(Number);
 
   let maxPassengers = Number(input.shift());
 
