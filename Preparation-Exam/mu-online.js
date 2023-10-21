@@ -1,7 +1,7 @@
 function game(rooms){
     let health = 100;
     let bitcoins = 0;
-    let element = rooms.split('|')
+    let element = rooms.split('|');
     //console.log(element);
 
     for(let i = 0;i<element.length;i++){
@@ -42,7 +42,7 @@ function game(rooms){
                 }
             }
     }
-    console.log(`You've made it!\nCoins: ${bitcoins}\nHealth: ${health}`);
+    console.log(`You've made it!\nBitcoins: ${bitcoins}\nHealth: ${health}`);
 
 }
 game("cat 10|potion 30|orc 10|chest 10|snake 25|chest 110");
