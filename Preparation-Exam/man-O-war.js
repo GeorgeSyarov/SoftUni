@@ -1,4 +1,5 @@
 function war(input) {
+  
   let pirateShip = input[0].split(">").map(Number);
   let warship = input[1].split(">").map(Number);
   let maxHealth = Number(input[2]);
