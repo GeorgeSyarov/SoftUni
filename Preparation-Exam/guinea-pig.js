@@ -1,4 +1,10 @@
-function feed(food,hay,cover,weigth){
+function feed(input){
+    let food = Number(input[0]);
+    let hay = Number(input[1]);
+    let cover = Number(input[2]);
+    let weigth = Number(input[3]);
+    //console.log(food,hay,cover,weigth);
+
     let gramFood = food*1000;
     let gramHay = hay*1000;
     let gramCover = cover*1000;
@@ -20,4 +26,4 @@ function feed(food,hay,cover,weigth){
     }
     console.log(`Everything is fine! Puppy is happy! Food: ${(gramFood/1000).toFixed(2)}, Hay: ${(gramHay/1000).toFixed(2)}, Cover: ${(gramCover/1000).toFixed(2)}.`);
 }
-feed(1,1.5,3,1.5);
+feed(['1','1.5','3','1.5']);
