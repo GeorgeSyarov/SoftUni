@@ -1,35 +1,41 @@
-function store(info){
-    let map = new Map();
+function store(info) {
+  let students = {};
 
-    for(let student of info){
-        let tokens = student.split(" ");
-        let name = tokens.shift();
-        console.log(name);
+  for (let student of info) {
+    let tokens = student.split(" ");
+    let name = tokens.shift();
 
-        let result = 0;
-        let counter = 0;
-        for(let i of tokens){
-            counter ++;
-            result += Number(i);
-        }
-
-        let average = Number(result/counter);
-        average = average
-        console.log(average);
-
-        if(!map.has(name)){
-            map.set(name, +average)
-        }else{
-            let avg = map.get(name);
-            let newAvg = ((avg + average)/2).toFixed(2);
-            map.set(name, newAvg);
-        }
+    let result = 0;
+    let counter = 0;
+    for (let i of tokens) {
+      counter++;
+      result += Number(i);
     }
-    for(let kvp of map){
-        console.log(`${kvp[0]}: ${kvp[1]}`);
+    counter = counter;
+    result = result;
+
+    let average = (result / counter).toFixed(2);
+
+    if (students.hasOwnProperty(name)) {
+      let oldAvg = students[name];
+      let newAvg = ((Number(oldAvg) + Number(average)) / 2).toFixed(2);
+      students[name] = newAvg;
+    } else {
+      students[name] = average;
     }
+  }
+
+  let entries = Object.entries(students);
+  entries.sort((a, b) => {
+    let keyA = a[0];
+    let keyB = b[0];
+    return keyA.localeCompare(keyB);
+  });
+  for (let kvp of entries) {
+    console.log(`${kvp[0]}: ${kvp[1]}`);
+  }
 }
-store(['Lilly 4 6 6 5',
-'Tim 5 6',
-'Tammy 2 4 3',
-'Tim 6 6']);
+store(['Steven 3 5 6 4',
+'George 4 6',
+'Tammy 2 5 3',
+'Steven 6 3']);
