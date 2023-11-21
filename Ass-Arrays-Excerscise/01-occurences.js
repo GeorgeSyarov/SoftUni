@@ -1,9 +1,9 @@
 function occure (words){
-    let [firstWord, secondWord] = words.shift().split(" ");
+    let tokens = words.shift().split(" ");
 
     let map = new Map();
-    map.set(firstWord, +0);
-    map.set(secondWord, +0);
+    map.set(tokens[0], 0);
+    map.set(tokens[1], 0);
 
 
     for(let word of words){
@@ -22,7 +22,7 @@ function occure (words){
 }
 
 occure([
-    'is the',
+    'isa thee',
     'first', 'sentence', 'Here', 'is',
     'another', 'the', 'And', 'finally', 'the',
     'the', 'sentence']
