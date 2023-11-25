@@ -68,24 +68,56 @@ function solve(input) {
       }
     }
   }
-  console.log(arena);
-}
-// solve([
-//     'Peter -> BattleCry -> 400',
-//     'Alex -> PowerPunch -> 300',
-//     'Stefan -> Duck -> 200',
-//     'Stefan -> Tiger -> 250',
-//     'Ave Cesar'
-//     ]);
+  let result = Object.entries(arena).sort(compareSkill);
 
+  for (let [name,tech] of result){
+    let total = 0;
+    for(let skill of Object.values(tech)){
+        total += skill;
+    }
+    console.log(`${name}: ${total} skill`);
+
+    let sortedTech = Object.entries(tech).sort(compareTech);
+
+    for(let [tech,skill] of sortedTech){
+        console.log(`- ${tech} <!> ${skill}`);
+    }
+  }
+
+  function compareSkill(a,b) {
+    let totalA = 0;
+    let totalB = 0;
+
+    for(let skill of Object.values(a[1])){
+        totalA += skill;
+    }
+    for(let skill of Object.values(b[1])){
+        totalB += skill;
+    }
+
+    return (totalB - totalA) || a[0].localeCompare(b[0]);
+  }
+
+  function compareTech(a,b){
+    return b[1] - a[1] || a[0].localeCompare(b[0]);
+  }
+}
 solve([
-  "Peter -> Duck -> 400",
-  "Julius -> Shield -> 150",
-  "Gladius -> Heal -> 200",
-  "Gladius -> Support -> 250",
-  "Gladius -> Shield -> 250",
-  "Peter vs Gladius",
-  "Gladius vs Julius",
-  "Gladius vs Maximilian",
-  "Ave Cesar",
-]);
+    'Peter -> BattleCry -> 400',
+    'Alex -> PowerPunch -> 300',
+    'Stefan -> Duck -> 200',
+    'Stefan -> Tiger -> 250',
+    'Ave Cesar'
+    ]);
+
+// solve([
+//   "Peter -> Duck -> 400",
+//   "Julius -> Shield -> 150",
+//   "Gladius -> Heal -> 200",
+//   "Gladius -> Support -> 250",
+//   "Gladius -> Shield -> 250",
+//   "Peter vs Gladius",
+//   "Gladius vs Julius",
+//   "Gladius vs Maximilian",
+//   "Ave Cesar",
+// ]);
