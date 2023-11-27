@@ -13,4 +13,4 @@ function solve (str){
     }
     console.log(obj.join(', '));
 }
-solve('SplitMeIfYouCanHaHaYouCantOrYouCan');
+solve('HoldTheDoor');
