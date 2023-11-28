@@ -1,19 +1,19 @@
 function fill(input) {
 
     let text = input[0];
-    let missingW = input[1];
+    let wordArr = input[1];
 
     let textWords = text.split(" ");
-    let missingWords = textWords.filter(x => x.includes("_"))
+    let missingWords = textWords.filter(x => x.includes("_"));
     
-    for(let word of missingW){
-        let x = word.length;
-        let wordX = "_".repeat(x);
-        if(text.includes(wordX)){
-            text = text.replace(wordX,word);
+    for(let word of missingWords){
+        if(!word.endsWith("_")){
+            word = word.slice(0, word.length - 1)
         }
+        let wordToFill = wordArr.find(x => x.length == word.length);
+        text = text.replace(word, wordToFill);
     }
-
+    
     console.log(text);
 
 }
