@@ -12,7 +12,6 @@ function solve(input) {
     if (names.includes(nameChars)) {
       let numbers = command.match(pattern2);
       let distance = numbers.map(Number).reduce((acc, val) => acc + val);
-      //console.log(distance);
 
       obj[nameChars] += distance;
     }
