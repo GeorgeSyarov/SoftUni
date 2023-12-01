@@ -2,10 +2,10 @@ function occure (words){
     let tokens = words.shift().split(" ");
 
     let map = new Map();
-    map.set(tokens[0], 0);
-    map.set(tokens[1], 0);
-
-
+    for(let token =0;token< tokens.length;token++){
+        map.set(tokens[token],0)
+    }
+    
     for(let word of words){
         if(map.has(word)){
             let occurences = map.get(word);
