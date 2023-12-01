@@ -1,9 +1,9 @@
 function solve(input) {
-  let numberHeros = Number(input.shift());
+  let n = Number(input.shift());
   let obj = {};
   let heroes = [];
 
-  for (let i = 0; i < numberHeros; i++) {
+  for (let i = 0; i < n; i++) {
     let heroLine = input.shift();
     heroes.push(heroLine);
   }
@@ -21,61 +21,49 @@ function solve(input) {
     let tokens = line.split(" - ");
     let action = tokens[0];
     let name = tokens[1];
-    let points = Number(tokens[2]);
 
     switch (action) {
       case "CastSpell":
+        let mpCost = Number(tokens[2]);
         let spell = tokens[3];
         let heroMp = obj[name].MP;
-        if(heroMp - points >= 0){
-            obj[name].MP -= points;
+        if(heroMp >= mpCost){
+            obj[name].MP -= mpCost;
             console.log(`${name} has successfully cast ${spell} and now has ${obj[name].MP} MP!`);
         } else{
             console.log(`${name} does not have enough MP to cast ${spell}!`);
         }
         break;
       case "TakeDamage":
+        let damage = Number(tokens[2]);
         let attacker = tokens[3];
-        obj[name].HP -= points;
+        obj[name].HP -= damage;
         if(obj[name].HP > 0){
-            console.log(`${name} was hit for ${points} HP by ${attacker} and now has ${obj[name].HP} HP left!`);
+            console.log(`${name} was hit for ${damage} HP by ${attacker} and now has ${obj[name].HP} HP left!`);
         }else{
-            delete obj[name];
             console.log(`${name} has been killed by ${attacker}!`);
+            delete obj[name];
         }
         break;
       case "Recharge":
-        let res = obj[name].MP + points;
-        if(res <= 200){
-            obj[name].MP += points;
-            console.log(`${name} recharged for ${points} MP!`);
-        }else{
-            if(points > 200){
-                console.log(`${name} recharged for 0 MP!`);
-            }else{
-
-                let pointUsed = 200 - obj[name].MP;
-                obj[name].MP = 200;
-                console.log(`${name} recharged for ${pointUsed} MP!`);
-            }
+          let mpToRestore = Number(tokens[2])
+          let res = obj[name].MP + mpToRestore;
+        if(res > 200){
+            mpToRestore = 200 - obj[name].MP;
         }
+            obj[name].MP += mpToRestore;
+            console.log(`${name} recharged for ${mpToRestore} MP!`);
+            
         break;
       case "Heal":
-        let res1 = (obj[name].HP) + points;
+        let hpToRestore = Number(tokens[2]);
+        let res1 = (obj[name].HP) + hpToRestore;
         
-        if(res1 <= 100){
-            obj[name].HP += points;
-            console.log(`${name} healed for ${points} HP!`);
-        }else{
-            if(points > 100){
-                console.log(`${name} healed for 0 HP!`);
-            }else{
-
-                let pointUsed1 = 100 - obj[name].HP;
-                obj[name].HP = 100;
-                console.log(`${name} healed for ${pointUsed1} HP!`);
-            }
-        } 
+        if(res1 > 100){
+            hpToRestore = 100 - obj[name].HP;
+        }
+        obj[name].HP += hpToRestore;
+        console.log(`${name} healed for ${hpToRestore} HP!`);
         break;
     }
 
