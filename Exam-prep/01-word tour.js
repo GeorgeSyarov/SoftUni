@@ -52,3 +52,19 @@ solve([
   "Switch:Albania: Azərbaycan",
   "Travel",
 ]);
+
+
+function printtect(text){
+  let number  = Number(true)
+  console.log(number);
+}
+printtect("JavaScript");
+
+let arr = ['z','d','a']
+console.log(arr.sort((a,b)=> b.localeCompare(a)));
+
+let a =5;
+let b= a++;
+let c = ++a ;
+
+console.log(c);
